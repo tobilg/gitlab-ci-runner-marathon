@@ -4,7 +4,7 @@ set -eu
 
 # Ensure GITLAB_SERVICE_NAME (custom defined variable). We need this to discover the GitLab location
 if [ -z ${GITLAB_SERVICE_NAME+x} ]; then
-    echo "Need to set GITLAB_SERVICE_NAME to the service name of GitLab (e.g. _gitlab._tcp.marathon.mesos)"
+    echo "Need to set GITLAB_SERVICE_NAME to the service name of GitLab (e.g. gitlab.marathon.mesos)"
     exit 1
 fi
 
