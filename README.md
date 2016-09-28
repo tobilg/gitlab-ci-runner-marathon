@@ -26,23 +26,23 @@ An example for a shell runner (on CoreOS):
         "mode": "RW"
       },
       {
-        "containerPath": "/lib64/libdevmapper.so.1.02",
-        "hostPath": "/lib/libdevmapper.so.1.02",
+        "containerPath": "/lib/libdevmapper.so.1.02",
+        "hostPath": "/lib64/libdevmapper.so.1.02",
         "mode": "RO"
       },
       {
-        "containerPath": "/lib64/libsystemd.so.0",
-        "hostPath": "/lib/libsystemd.so.0",
+        "containerPath": "/lib/libsystemd.so.0",
+        "hostPath": "/lib64/libsystemd.so.0",
         "mode": "RO"
       },
       {
-        "containerPath": "/lib64/libgcrypt.so.20",
-        "hostPath": "/lib/libgcrypt.so.20",
+        "containerPath": "/lib/libgcrypt.so.20",
+        "hostPath": "/lib64/libgcrypt.so.20",
         "mode": "RO"
       },
       {
-        "containerPath": "/lib64/libgpg-error.so.0",
-        "hostPath": "/lib/x86_64-linux-gnu/libgpg-error.so.0",
+        "containerPath": "/lib/x86_64-linux-gnu/libgpg-error.so.0",
+        "hostPath": "/lib64/libgpg-error.so.0",
         "mode": "RO"
       }
     ]
