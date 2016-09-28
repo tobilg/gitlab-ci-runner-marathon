@@ -31,7 +31,7 @@ export MESOS_DNS_SERVER=$(cat /etc/resolv.conf | grep nameserver | awk -F" " '{p
 
 # Set the CI_SERVER_URL by resolving the Mesos DNS service name endpoint.
 # Environment variable GITLAB_SERVICE_NAME must be defined in the Marathon app.json
-export CI_SERVER_URL=http://$(mesosdns-resolver --serviceName $GITLAB_SERVICE_NAME --server $MESOS_DNS_SERVER --portIndex 0)
+export CI_SERVER_URL=http://$(mesosdns-resolver --serviceName $GITLAB_SERVICE_NAME --server $MESOS_DNS_SERVER --portIndex 0)/ci
 
 # Derive the RUNNER_NAME from the MESOS_TASK_ID
 export RUNNER_NAME="runner.${MESOS_TASK_ID}"
