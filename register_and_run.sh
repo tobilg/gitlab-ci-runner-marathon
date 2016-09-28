@@ -37,7 +37,7 @@ export MESOS_DNS_SERVER=$(cat /etc/resolv.conf | grep nameserver | awk -F" " '{p
 export CI_SERVER_URL=http://$(mesosdns-resolver --serviceName $GITLAB_SERVICE_NAME --server $MESOS_DNS_SERVER --portIndex 0)/ci
 
 # Derive the RUNNER_NAME from the MESOS_TASK_ID
-export RUNNER_NAME="runner.${MESOS_TASK_ID}"
+export RUNNER_NAME=${MESOS_TASK_ID}
 
 # Enable non-interactive registration the the main GitLab instance
 export REGISTER_NON_INTERACTIVE=true
@@ -49,7 +49,7 @@ export RUNNER_BUILDS_DIR=${MESOS_SANDBOX}/builds
 export RUNNER_CACHE_DIR=${MESOS_SANDBOX}/cache
 
 # Set the RUNNER_WORK_DIR
-export RUNNER_WORK_DIR=${MESOS_SANDBOX}/cache
+export RUNNER_WORK_DIR=${MESOS_SANDBOX}/work
 
 # Create directories
 mkdir -p $RUNNER_BUILDS_DIR $RUNNER_CACHE_DIR $RUNNER_WORK_DIR
