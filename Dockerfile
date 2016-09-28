@@ -8,6 +8,6 @@ RUN apt-get update && apt-get install -y curl dnsutils && \
     curl -cL https://raw.githubusercontent.com/tobilg/mesosdns-resolver/master/mesosdns-resolver.sh > /usr/bin/mesosdns-resolver && \
     chmod +x /usr/bin/mesosdns-resolver
 
-ADD register-and-run.sh /
+ADD register_and_run.sh /
 
-ENTRYPOINT ["/register-and-run.sh"]
+ENTRYPOINT ["/register_and_run.sh"]
