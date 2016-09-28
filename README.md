@@ -12,7 +12,8 @@ An example for a shell runner (on CoreOS):
     "type": "DOCKER",
     "docker": {
       "image": "tobilg/gitlab-ci-runner-marathon:latest",
-      "network": "HOST"
+      "network": "HOST",
+      "forcePullImage": true
     },
     "volumes": [
       {
@@ -51,7 +52,7 @@ An example for a shell runner (on CoreOS):
   "cpus": 0.1,
   "mem": 2048,
   "env": {
-    "GITLAB_SERVICE_NAME": "_gitlab._tcp.marathon.mesos",
+    "GITLAB_SERVICE_NAME": "gitlab.marathon.mesos",
     "REGISTRATION_TOKEN": "zzNWmRE--SBfeMfiKCMh",
     "RUNNER_EXECUTOR": "shell",
     "RUNNER_TAG_LIST": "shell,build-as-docker",
