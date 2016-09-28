@@ -49,7 +49,7 @@ An example for a shell runner (on CoreOS):
   },
   "instances": 1,
   "cpus": 0.1,
-  "mem": 64,
+  "mem": 2048,
   "healthChecks": [{
       "protocol": "HTTP",
       "path": "/",
