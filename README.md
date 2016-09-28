@@ -49,7 +49,7 @@ An example for a shell runner (on CoreOS):
     ]
   },
   "instances": 1,
-  "cpus": 0.1,
+  "cpus": 1,
   "mem": 2048,
   "env": {
     "GITLAB_SERVICE_NAME": "gitlab.marathon.mesos",
