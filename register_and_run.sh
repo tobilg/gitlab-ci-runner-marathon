@@ -25,9 +25,13 @@ if [[ -v RUNNER_CONCURRENT_BUILDS ]]; then
   sed -i -e "s|concurrent = 1|concurrent = ${RUNNER_CONCURRENT_BUILDS}|g" /etc/gitlab-runner/config.toml
 fi
 
+# Derive the Mesos DNS server ip address by getting the first nameserver entry from /etc/resolv.conf
+# Nasty workaround!
+export MESOS_DNS_SERVER=$(cat /etc/resolv.conf | grep nameserver | awk -F" " '{print $2}' | head -n 1)
+
 # Set the CI_SERVER_URL by resolving the Mesos DNS service name endpoint.
 # Environment variable GITLAB_SERVICE_NAME must be defined in the Marathon app.json
-export CI_SERVER_URL=$(mesosdns-resolver --serviceName $GITLAB_SERVICE_NAME --server $HOST --portIndex 0)
+export CI_SERVER_URL=$(mesosdns-resolver --serviceName $GITLAB_SERVICE_NAME --server $MESOS_DNS_SERVER --portIndex 0)
 
 # Derive the RUNNER_NAME from the MESOS_TASK_ID
 export RUNNER_NAME="runner.${MESOS_TASK_ID}"
