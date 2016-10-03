@@ -4,7 +4,7 @@ set -eu
 
 # Ensure GITLAB_SERVICE_NAME (custom defined variable). We need this to discover the GitLab location
 if [ -z ${GITLAB_SERVICE_NAME+x} ]; then
-    echo "Need to set GITLAB_SERVICE_NAME to the service name of GitLab (e.g. gitlab.marathon.mesos)"
+    echo "Need to set GITLAB_SERVICE_NAME to the service name of GitLab (e.g. gitlab)"
     exit 1
 fi
 
@@ -28,13 +28,10 @@ else
     echo "Concurrency is set to ${RUNNER_CONCURRENT_BUILDS}"
 fi
 
-# Derive the Mesos DNS server ip address by getting the first nameserver entry from /etc/resolv.conf
-# Nasty workaround!
-export MESOS_DNS_SERVER=$(cat /etc/resolv.conf | grep nameserver | awk -F" " '{print $2}' | head -n 1)
-
 # Set the CI_SERVER_URL by resolving the Mesos DNS service name endpoint.
 # Environment variable GITLAB_SERVICE_NAME must be defined in the Marathon app.json
-export CI_SERVER_URL=http://$(mesosdns-resolver --serviceName $GITLAB_SERVICE_NAME --server $MESOS_DNS_SERVER --portIndex 0)/ci
+export CI_SERVER_PORT=$(dig srv _instance._$GITLAB_SERVICE_NAME._tcp.marathon.mesos +short | head -1 | awk '{print $3}')
+export CI_SERVER_URL=http://$GITLAB_SERVICE_NAME.marathon.mesos:$CI_SERVER_PORT/ci
 
 # Derive the RUNNER_NAME from the MESOS_TASK_ID
 export RUNNER_NAME=${MESOS_TASK_ID}
