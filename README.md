@@ -84,7 +84,7 @@ An example for a shell runner (on CoreOS), where you need to map the Docker bina
 
 Here's an example for a Docker runner, which enables builds *inside* Docker containers:
 
-```
+```javascript
 {
   "id": "gitlab-runner-docker",
   "container": {
@@ -128,7 +128,7 @@ Here's an example for a Docker runner, which enables builds *inside* Docker cont
     ]
   },
   "instances": 1,
-  "cpus": 0.3,
+  "cpus": 1,
   "mem": 2048,
   "env": {
     "GITLAB_SERVICE_NAME": "gitlab.marathon.mesos",
@@ -149,7 +149,7 @@ Make sure you choose a useful default Docker image via `DOCKER_IMAGE`, for examp
 
 An `.gitlab-ci.yml` example of using the `build-as-docker` tag to trigger a build on the runner(s) with shell executors:
 
-```
+```yaml
 stages:
   - ci
 
@@ -171,7 +171,7 @@ FROM nginx
 
 An `.gitlab-ci.yml` example of using the `build-in-docker` tag to trigger a build on the runner(s) with Docker executors:
 
-```
+```yaml
 image: node:6-wheezy
 
 stages:
