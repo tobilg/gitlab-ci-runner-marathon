@@ -16,7 +16,9 @@ The most important ones are:
 
 ## Run on Marathon
 
-Currently the approach is not to use Docker-in-Docker techniques (why? See [jpetazzo's article](http://jpetazzo.github.io/2015/09/03/do-not-use-docker-in-docker-for-ci/), but mounting the `docker.socket` and the `docker` binary in the GitLab CI runner container. It's possible that you have to mount other files as well, depending on your environment. See below for a CoreOS example.
+Currently the approach is not to use Docker-in-Docker techniques (why? See [jpetazzo's article](http://jpetazzo.github.io/2015/09/03/do-not-use-docker-in-docker-for-ci/)), but mounting the `docker.socket` and the `docker` binary in the GitLab CI runner container. It's possible that you have to mount other files as well, depending on your environment. See below for a CoreOS example.
+
+In the following examples, we assume that you're running the GitLab Universe package as service `gitlab` on DC/OS internal Marathon instance.
 
 ### Shell runner
 
