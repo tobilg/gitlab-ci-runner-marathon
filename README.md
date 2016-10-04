@@ -196,6 +196,12 @@ To customize the configuration below, you'd have to set/replace
 * For the usage of mapped host volumes, you'll have to create the directories (in this example `/opt/gitlab` and `/opt/gitlab-data`) on the specific agent where you want to run GitLab
 * Replace the `192.168.1.100` address with the hostname or ip address on which you created the folders for GitLab
 
+The following labels are important for the service discovery/exposure via marathon-lb:
+
+* `HAPROXY_0_BACKEND_HTTP_OPTIONS`
+* `HAPROXY_0_HTTP_FRONTEND_HEAD`
+* `HAPROXY_0_VHOST`
+
 ```javascript
 {
   "id": "/gitlab",
