@@ -201,6 +201,8 @@ The following labels are important for the service discovery/exposure via marath
 * `HAPROXY_0_BACKEND_HTTP_OPTIONS`
 * `HAPROXY_0_HTTP_FRONTEND_HEAD`
 * `HAPROXY_0_VHOST`
+* `HAPROXY_0_REDIRECT_TO_HTTPS`
+* `HAPROXY_GROUP`
 
 ```javascript
 {
@@ -292,19 +294,19 @@ The following labels are important for the service discovery/exposure via marath
   },
   "labels": {
     "DCOS_PACKAGE_RELEASE": "1",
-    "HAPROXY_0_REDIRECT_TO_HTTPS": "false",
     "DCOS_PACKAGE_SOURCE": "https://universe.mesosphere.com/repo",
-    "HAPROXY_GROUP": "external",
     "DCOS_PACKAGE_METADATA": "eyJwYWNrYWdpbmdWZXJzaW9uIjoiMy4wIiwibmFtZSI6ImdpdGxhYiIsInZlcnNpb24iOiIxLjAtOC4xMS41IiwibWFpbnRhaW5lciI6InN1cHBvcnRAZ2l0bGFiLmNvbSIsImRlc2NyaXB0aW9uIjoiQ29sbGFib3JhdGlvbiBhbmQgc291cmNlIGNvbnRyb2wgbWFuYWdlbWVudDogY29kZSwgdGVzdCwgYW5kIGRlcGxveSB0b2dldGhlciEiLCJ0YWdzIjpbImNvbnRpbnVvdXMtaW50ZWdyYXRpb24iLCJjaSIsInZjcyIsInZlcnNpb24tY29udHJvbC1zb2Z0d2FyZSJdLCJzZWxlY3RlZCI6dHJ1ZSwic2NtIjoiaHR0cHM6Ly9naXRsYWIuY29tL2dpdGxhYi1vcmcvZ2l0bGFiLWNlIiwid2Vic2l0ZSI6Imh0dHBzOi8vYWJvdXQuZ2l0bGFiLmNvbS8iLCJmcmFtZXdvcmsiOmZhbHNlLCJwcmVJbnN0YWxsTm90ZXMiOiJIYXZpbmcgTWFyYXRob24tbGIgaW5zdGFsbGVkIGFuZCBzZXR0aW5nIGEgdmlydHVhbCBob3N0IGluIHRoZSBjb25maWcgaXMgcmVxdWlyZWQgZm9yIGJlaW5nIGFibGUgdG8gYWNjZXNzIEdpdExhYi4iLCJwb3N0SW5zdGFsbE5vdGVzIjoiR2l0TGFiIGhhcyBiZWVuIGluc3RhbGxlZC4iLCJwb3N0VW5pbnN0YWxsTm90ZXMiOiJHaXRMYWIgaGFzIGJlZW4gdW5pbnN0YWxsZWQuIE5vdGUgdGhhdCBhbnkgZGF0YSBwZXJzaXN0ZWQgdG8gYSBORlMgc2hhcmUgc3RpbGwgZXhpc3RzIGFuZCB3aWxsIG5lZWQgdG8gYmUgbWFudWFsbHkgcmVtb3ZlZC4iLCJsaWNlbnNlcyI6W3sibmFtZSI6Ik1JVCBMaWNlbnNlIiwidXJsIjoiaHR0cHM6Ly9naXRsYWIuY29tL2dpdGxhYi1vcmcvZ2l0bGFiLWNlL3Jhdy9tYXN0ZXIvTElDRU5TRSJ9LHsibmFtZSI6IkVFIExpY2Vuc2UiLCJ1cmwiOiJodHRwczovL2dpdGxhYi5jb20vZ2l0bGFiLW9yZy9naXRsYWItZWUvcmF3L21hc3Rlci9MSUNFTlNFIn1dLCJpbWFnZXMiOnsiaWNvbi1zbWFsbCI6Imh0dHBzOi8vc2VjdXJlLmdyYXZhdGFyLmNvbS9hdmF0YXIvNmVkZDBhY2FmODBmNzg0ZmFiM2RkMmMzMWQ2MDRlNzQuanBnP3M9NDAmcj1nJmQ9bW0iLCJpY29uLW1lZGl1bSI6Imh0dHBzOi8vc2VjdXJlLmdyYXZhdGFyLmNvbS9hdmF0YXIvNmVkZDBhY2FmODBmNzg0ZmFiM2RkMmMzMWQ2MDRlNzQuanBnP3M9ODAmcj1nJmQ9bW0iLCJpY29uLWxhcmdlIjoiaHR0cHM6Ly9zZWN1cmUuZ3JhdmF0YXIuY29tL2F2YXRhci82ZWRkMGFjYWY4MGY3ODRmYWIzZGQyYzMxZDYwNGU3NC5qcGc/cz0yMDAmcj1nJmQ9bW0ifX0=",
     "DCOS_PACKAGE_REGISTRY_VERSION": "3.0",
     "DCOS_SERVICE_NAME": "gitlab",
-    "HAPROXY_0_BACKEND_HTTP_OPTIONS": "  option httplog\n  option forwardfor\n  no option http-keep-alive\n  http-request set-header X-Forwarded-Port %[dst_port]\n",
-    "HAPROXY_0_HTTP_FRONTEND_HEAD": "  option httplog\n",
     "DCOS_PACKAGE_VERSION": "1.0-8.11.5",
     "DCOS_PACKAGE_NAME": "gitlab",
-    "MARATHON_SINGLE_INSTANCE_APP": "true",
     "DCOS_PACKAGE_IS_FRAMEWORK": "false",
-    "HAPROXY_0_VHOST": "gitlab.dcos-public-agent-1.mydomain.mytld"
+    "MARATHON_SINGLE_INSTANCE_APP": "true",
+    "HAPROXY_0_BACKEND_HTTP_OPTIONS": "  option httplog\n  option forwardfor\n  no option http-keep-alive\n  http-request set-header X-Forwarded-Port %[dst_port]\n",
+    "HAPROXY_0_HTTP_FRONTEND_HEAD": "  option httplog\n",
+    "HAPROXY_0_VHOST": "gitlab.dcos-public-agent-1.mydomain.mytld",
+    "HAPROXY_0_REDIRECT_TO_HTTPS": "false",
+    "HAPROXY_GROUP": "external"
   },
   "acceptedResourceRoles": [
     "*"
