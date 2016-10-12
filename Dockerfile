@@ -21,7 +21,7 @@ RUN apt-get update -y && \
     echo "deb https://packages.gitlab.com/runner/gitlab-ci-multi-runner/ubuntu/ `lsb_release -cs` main" > /etc/apt/sources.list.d/runner_gitlab-ci-multi-runner.list && \
     curl -sSL https://packages.gitlab.com/gpg.key | apt-key add - && \
     apt-get update -y && \
-    apt-get install -y gitlab-ci-multi-runner && \
+    apt-get install -y gitlab-ci-multi-runner=1.5.3 && \
     mkdir -p /etc/gitlab-runner/certs && \
     chmod -R 700 /etc/gitlab-runner && \
     curl -sSL https://raw.githubusercontent.com/tobilg/mesosdns-resolver/master/mesosdns-resolver.sh -o /usr/local/bin/mesosdns-resolver && \
