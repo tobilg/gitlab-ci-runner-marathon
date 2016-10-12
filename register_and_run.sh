@@ -28,6 +28,33 @@ else
     echo "Concurrency is set to ${RUNNER_CONCURRENT_BUILDS}"
 fi
 
+# Include the original entrypoint contents
+
+# Set data directory
+DATA_DIR="/etc/gitlab-runner"
+
+# Set config file
+CONFIG_FILE=${CONFIG_FILE:-$DATA_DIR/config.toml}
+
+# Set custom certificate authority paths
+CA_CERTIFICATES_PATH=${CA_CERTIFICATES_PATH:-$DATA_DIR/certs/ca.crt}
+LOCAL_CA_PATH="/usr/local/share/ca-certificates/ca.crt"
+
+# Create update_ca function
+update_ca() {
+  echo "Updating CA certificates..."
+  cp "${CA_CERTIFICATES_PATH}" "${LOCAL_CA_PATH}"
+  update-ca-certificates --fresh > /dev/null
+}
+
+# Compare the custom CA path to the current CA path
+if [ -f "${CA_CERTIFICATES_PATH}" ]; then
+  # Update the CA if the custom CA is different than the current
+  cmp --silent "${CA_CERTIFICATES_PATH}" "${LOCAL_CA_PATH}" || update_ca
+fi
+
+# /Include the original entrypoint contents
+
 # Derive the Mesos DNS server ip address by getting the first nameserver entry from /etc/resolv.conf
 # Nasty workaround!
 export MESOS_DNS_SERVER=$(cat /etc/resolv.conf | grep nameserver | awk -F" " '{print $2}' | head -n 1)
@@ -55,7 +82,20 @@ export RUNNER_WORK_DIR=${MESOS_SANDBOX}/work
 mkdir -p $RUNNER_BUILDS_DIR $RUNNER_CACHE_DIR $RUNNER_WORK_DIR
 
 # Print the environment for debugging purposes
+echo "==> Printing the environment"
 env
+
+# Launch Docker daemon
+# taken from https://github.com/mesosphere/jenkins-dind-agent/blob/master/wrapper.sh
+echo "==> Launching the Docker daemon..."
+dind docker daemon --host=unix:///var/run/docker.sock --storage-driver=overlay $DOCKER_EXTRA_OPTS &
+
+# Wait for the Docker daemon to start
+while(! docker info > /dev/null 2>&1); do
+    echo "==> Waiting for the Docker daemon to come online..."
+    sleep 1
+done
+echo "==> Docker Daemon is up and running!"
 
 # Register the runner
 gitlab-runner register
