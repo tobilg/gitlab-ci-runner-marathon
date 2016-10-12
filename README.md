@@ -1,4 +1,4 @@
-# gitlab-ci-runner-marathon
+# gitlab-ci-runner-marathon (DinD version)
 
 A customized Docker image for running scalable GitLab CI runners on DC/OS or vanilla Mesos via Marathon.
 
@@ -16,7 +16,7 @@ The most important ones are:
 
 ## Run on DC/OS (or vanilla Mesos)
 
-Currently the approach is not to use Docker-in-Docker techniques (why? See [jpetazzo's article](http://jpetazzo.github.io/2015/09/03/do-not-use-docker-in-docker-for-ci/)), but mounting the `docker.socket` and the `docker` binary in the GitLab CI runner container. It's possible that you have to mount other files as well, depending on your environment. See below for a CoreOS example.
+This version of the GitLab CI runner for Marathon project uses Docker-in-Docker techniques, with all of its pros and cons. See also [jpetazzo's article](http://jpetazzo.github.io/2015/09/03/do-not-use-docker-in-docker-for-ci/)) on this topic.
 
 In the following examples, we assume that you're running the GitLab Universe package as service `gitlab` on DC/OS internal Marathon instance, which is also available to the runners via the `external_url` of the GitLab configuration. This normally means that GitLab is exposed on a public agent node via marathon-lb. 
 
@@ -24,7 +24,7 @@ Have a look below for a GitLab CE sample configuration.
 
 ### Shell runner
 
-An example for a shell runner (on CoreOS), where you need to map the Docker binary and socket, as well as other libs to the GitLab runner container. This enables the build of Docker images.
+An example for a shell runner. This enables the build of Docker images.
 
 ```javascript
 {
@@ -32,42 +32,11 @@ An example for a shell runner (on CoreOS), where you need to map the Docker bina
   "container": {
     "type": "DOCKER",
     "docker": {
-      "image": "tobilg/gitlab-ci-runner-marathon:latest",
+      "image": "tobilg/gitlab-ci-runner-marathon:dind",
       "network": "HOST",
-      "forcePullImage": true
-    },
-    "volumes": [
-      {
-        "containerPath": "/usr/bin/docker",
-        "hostPath": "/usr/bin/docker",
-        "mode": "RO"
-      },
-      {
-        "containerPath": "/var/run/docker.sock",
-        "hostPath": "/var/run/docker.sock",
-        "mode": "RW"
-      },
-      {
-        "containerPath": "/lib/libdevmapper.so.1.02",
-        "hostPath": "/lib64/libdevmapper.so.1.02",
-        "mode": "RO"
-      },
-      {
-        "containerPath": "/lib/libsystemd.so.0",
-        "hostPath": "/lib64/libsystemd.so.0",
-        "mode": "RO"
-      },
-      {
-        "containerPath": "/lib/libgcrypt.so.20",
-        "hostPath": "/lib64/libgcrypt.so.20",
-        "mode": "RO"
-      },
-      {
-        "containerPath": "/lib/x86_64-linux-gnu/libgpg-error.so.0",
-        "hostPath": "/lib64/libgpg-error.so.0",
-        "mode": "RO"
-      }
-    ]
+      "forcePullImage": true,
+      "privileged": true
+    }
   },
   "instances": 1,
   "cpus": 1,
@@ -92,42 +61,11 @@ Here's an example for a Docker runner, which enables builds *inside* Docker cont
   "container": {
     "type": "DOCKER",
     "docker": {
-      "image": "tobilg/gitlab-ci-runner-marathon:latest",
+      "image": "tobilg/gitlab-ci-runner-marathon:dind",
       "network": "HOST",
-      "forcePullImage": true
-    },
-    "volumes": [
-      {
-        "containerPath": "/usr/bin/docker",
-        "hostPath": "/usr/bin/docker",
-        "mode": "RO"
-      },
-      {
-        "containerPath": "/var/run/docker.sock",
-        "hostPath": "/var/run/docker.sock",
-        "mode": "RW"
-      },
-      {
-        "containerPath": "/lib/libdevmapper.so.1.02",
-        "hostPath": "/lib64/libdevmapper.so.1.02",
-        "mode": "RO"
-      },
-      {
-        "containerPath": "/lib/libsystemd.so.0",
-        "hostPath": "/lib64/libsystemd.so.0",
-        "mode": "RO"
-      },
-      {
-        "containerPath": "/lib/libgcrypt.so.20",
-        "hostPath": "/lib64/libgcrypt.so.20",
-        "mode": "RO"
-      },
-      {
-        "containerPath": "/lib/x86_64-linux-gnu/libgpg-error.so.0",
-        "hostPath": "/lib64/libgpg-error.so.0",
-        "mode": "RO"
-      }
-    ]
+      "forcePullImage": true,
+      "privileged": true
+    }
   },
   "instances": 1,
   "cpus": 1,
