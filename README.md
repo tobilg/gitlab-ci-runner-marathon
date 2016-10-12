@@ -16,7 +16,7 @@ The most important ones are:
 
 ## Run on DC/OS (or vanilla Mesos)
 
-This version of the GitLab CI runner for Marathon project uses Docker-in-Docker techniques, with all of its pros and cons. See also [jpetazzo's article](http://jpetazzo.github.io/2015/09/03/do-not-use-docker-in-docker-for-ci/)) on this topic.
+This version of the GitLab CI runner for Marathon project uses Docker-in-Docker techniques, with all of its pros and cons. See also [jpetazzo's article](http://jpetazzo.github.io/2015/09/03/do-not-use-docker-in-docker-for-ci/) on this topic.
 
 In the following examples, we assume that you're running the GitLab Universe package as service `gitlab` on DC/OS internal Marathon instance, which is also available to the runners via the `external_url` of the GitLab configuration. This normally means that GitLab is exposed on a public agent node via marathon-lb. 
 
