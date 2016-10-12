@@ -16,7 +16,7 @@ ENV DIND_COMMIT 3b5fac462d21ca164b3778647420016315289034
 # 6. Cleanup
 RUN apt-get update -y && \
     apt-get upgrade -y && \
-    apt-get install -y ca-certificates apt-transport-https curl dnsutils lsb-release && \
+    apt-get install -y ca-certificates apt-transport-https curl dnsutils bridge-utils lsb-release && \
     chmod +x /usr/bin/dumb-init && \
     echo "deb https://packages.gitlab.com/runner/gitlab-ci-multi-runner/ubuntu/ `lsb_release -cs` main" > /etc/apt/sources.list.d/runner_gitlab-ci-multi-runner.list && \
     curl -sSL https://packages.gitlab.com/gpg.key | apt-key add - && \
