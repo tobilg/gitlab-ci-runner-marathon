@@ -4,28 +4,28 @@ set -eu
 
 # Ensure GITLAB_SERVICE_NAME (custom defined variable). We need this to discover the GitLab location
 if [ -z ${GITLAB_SERVICE_NAME+x} ]; then
-    echo "Need to set GITLAB_SERVICE_NAME to the service name of GitLab (e.g. gitlab.marathon.mesos)"
+    echo "==> Need to set GITLAB_SERVICE_NAME to the service name of GitLab (e.g. gitlab.marathon.mesos)"
     exit 1
 fi
 
 # Ensure REGISTRATION_TOKEN
 if [ -z ${REGISTRATION_TOKEN+x} ]; then
-    echo "Need to set REGISTRATION_TOKEN. You can get this token in GitLab -> Admin Area -> Overview -> Runners"
+    echo "==> Need to set REGISTRATION_TOKEN. You can get this token in GitLab -> Admin Area -> Overview -> Runners"
     exit 1
 fi
 
 # Ensure RUNNER_EXECUTOR
 if [ -z ${RUNNER_EXECUTOR+x} ]; then
-    echo "Need to set RUNNER_EXECUTOR. Please choose a valid executor, like 'shell' or 'docker' etc."
+    echo "==> Need to set RUNNER_EXECUTOR. Please choose a valid executor, like 'shell' or 'docker' etc."
     exit 1
 fi
 
 # Check for RUNNER_CONCURRENT_BUILDS variable (custom defined variable)
 if [ -z ${RUNNER_CONCURRENT_BUILDS+x} ]; then
-    echo "Concurrency is set to 1"
+    echo "==> Concurrency is set to 1"
 else
     sed -i -e "s|concurrent = 1|concurrent = ${RUNNER_CONCURRENT_BUILDS}|g" /etc/gitlab-runner/config.toml
-    echo "Concurrency is set to ${RUNNER_CONCURRENT_BUILDS}"
+    echo "==> Concurrency is set to ${RUNNER_CONCURRENT_BUILDS}"
 fi
 
 # Include the original entrypoint contents
@@ -42,7 +42,7 @@ LOCAL_CA_PATH="/usr/local/share/ca-certificates/ca.crt"
 
 # Create update_ca function
 update_ca() {
-  echo "Updating CA certificates..."
+  echo "==> Updating CA certificates..."
   cp "${CA_CERTIFICATES_PATH}" "${LOCAL_CA_PATH}"
   update-ca-certificates --fresh > /dev/null
 }
