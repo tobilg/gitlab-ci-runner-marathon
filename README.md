@@ -16,7 +16,14 @@ The most important ones are:
 
 ## Run on DC/OS (or vanilla Mesos)
 
-Currently the approach is not to use Docker-in-Docker techniques (why? See [jpetazzo's article](http://jpetazzo.github.io/2015/09/03/do-not-use-docker-in-docker-for-ci/)), but mounting the `docker.socket` and the `docker` binary in the GitLab CI runner container. It's possible that you have to mount other files as well, depending on your environment. See below for a CoreOS example.
+This project currently comes in two flavors, split in branches:
+
+* `master`: The [master branch](https://github.com/tobilg/gitlab-ci-runner-marathon) is not using Docker-in-Docker techniques for the CI runners
+* `dind`: The [dind branch](https://github.com/tobilg/gitlab-ci-runner-marathon/tree/dind) provides a Docker-in-Docker solution for the CI runners 
+
+See [jpetazzo's article](http://jpetazzo.github.io/2015/09/03/do-not-use-docker-in-docker-for-ci/))for the pros and cons regarding Docker-in-Docker.
+
+When not using DinD, mounting the `docker.socket` and the `docker` binary in the GitLab CI runner container from the host is necessary. It's possible that you have to mount other files as well, depending on your environment. See below for a CoreOS example.
 
 In the following examples, we assume that you're running the GitLab Universe package as service `gitlab` on DC/OS internal Marathon instance, which is also available to the runners via the `external_url` of the GitLab configuration. This normally means that GitLab is exposed on a public agent node via marathon-lb. 
 
