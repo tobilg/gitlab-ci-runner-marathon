@@ -21,7 +21,7 @@ This project currently comes in two flavors, split in branches:
 * `master`: The [master branch](https://github.com/tobilg/gitlab-ci-runner-marathon) is not using Docker-in-Docker techniques for the CI runners
 * `dind`: The [dind branch](https://github.com/tobilg/gitlab-ci-runner-marathon/tree/dind) provides a Docker-in-Docker solution for the CI runners 
 
-See [jpetazzo's article](http://jpetazzo.github.io/2015/09/03/do-not-use-docker-in-docker-for-ci/))for the pros and cons regarding Docker-in-Docker.
+See [jpetazzo's article](http://jpetazzo.github.io/2015/09/03/do-not-use-docker-in-docker-for-ci/) for the pros and cons regarding Docker-in-Docker.
 
 When not using DinD, mounting the `docker.socket` and the `docker` binary in the GitLab CI runner container from the host is necessary. It's possible that you have to mount other files as well, depending on your environment. See below for a CoreOS example.
 
