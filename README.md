@@ -1,6 +1,6 @@
-# gitlab-ci-runner-marathon
+# dcos-gitlab-ci-service
 
-A customized Docker image for running scalable GitLab CI runners on DC/OS or vanilla Mesos via Marathon.
+A customized Docker image for running scalable GitLab CI runners on DC/OS (or vanilla Mesos) via Marathon.
 
 ## Configuration
 
@@ -18,8 +18,8 @@ The most important ones are:
 
 This project currently comes in two flavors, split in branches:
 
-* `master`: The [master branch](https://github.com/tobilg/gitlab-ci-runner-marathon) is not using Docker-in-Docker techniques for the CI runners
-* `dind`: The [dind branch](https://github.com/tobilg/gitlab-ci-runner-marathon/tree/dind) provides a Docker-in-Docker solution for the CI runners 
+* `master`: The [master branch](https://github.com/mesosphere/dcos-gitlab-ci-service) is not using Docker-in-Docker techniques for the CI runners
+* `dind`: The [dind branch](https://github.com/mesosphere/dcos-gitlab-ci-service/tree/dind) provides a Docker-in-Docker solution for the CI runners 
 
 See [jpetazzo's article](http://jpetazzo.github.io/2015/09/03/do-not-use-docker-in-docker-for-ci/) for the pros and cons regarding Docker-in-Docker.
 
