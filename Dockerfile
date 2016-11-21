@@ -1,4 +1,4 @@
-FROM gitlab/gitlab-runner:ubuntu-v1.5.3
+FROM gitlab/gitlab-runner:ubuntu-v1.7.1
 
 MAINTAINER TobiLG <tobilg@gmail.com>
 
