@@ -7,7 +7,7 @@ ADD https://github.com/Yelp/dumb-init/releases/download/v1.0.2/dumb-init_1.0.2_a
 
 ENV DIND_COMMIT 3b5fac462d21ca164b3778647420016315289034
 
-ENV GITLAB_RUNNER_VERSION=1.7.1
+ENV GITLAB_RUNNER_VERSION=1.8.1
 
 # Install components and do the preparations
 # 1. Install needed packages
