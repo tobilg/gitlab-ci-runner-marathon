@@ -7,7 +7,9 @@ ADD https://github.com/Yelp/dumb-init/releases/download/v1.0.2/dumb-init_1.0.2_a
 
 ENV DIND_COMMIT 3b5fac462d21ca164b3778647420016315289034
 
-ENV GITLAB_RUNNER_VERSION=1.8.1
+ENV GITLAB_RUNNER_VERSION=1.10.4
+
+ENV DOCKER_ENGINE_VERSION=1.11.2-0~xenial
 
 # Install components and do the preparations
 # 1. Install needed packages
@@ -31,7 +33,7 @@ RUN apt-get update -y && \
     apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 58118E89F3A912897C070ADBF76221572C52609D && \
     apt-add-repository 'deb https://apt.dockerproject.org/repo ubuntu-xenial main' && \
     apt-get update && \
-    apt-get install -y docker-engine && \
+    apt-get install -y docker-engine=${DOCKER_ENGINE_VERSION} && \
     curl -sSL https://raw.githubusercontent.com/docker/docker/${DIND_COMMIT}/hack/dind -o /usr/local/bin/dind && \
     chmod a+x /usr/local/bin/dind && \
     apt-get clean && \
