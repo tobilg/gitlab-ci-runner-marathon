@@ -32,7 +32,7 @@ An example for a shell runner. This enables the build of Docker images.
   "container": {
     "type": "DOCKER",
     "docker": {
-      "image": "tobilg/gitlab-ci-runner-marathon:dind-v1.8",
+      "image": "tobilg/gitlab-ci-runner-marathon:dind-v1.10.4",
       "network": "HOST",
       "forcePullImage": true,
       "privileged": true
@@ -61,7 +61,7 @@ Here's an example for a Docker runner, which enables builds *inside* Docker cont
   "container": {
     "type": "DOCKER",
     "docker": {
-      "image": "tobilg/gitlab-ci-runner-marathon:dind-v1.8",
+      "image": "tobilg/gitlab-ci-runner-marathon:dind-v1.10.4",
       "network": "HOST",
       "forcePullImage": true,
       "privileged": true
@@ -167,7 +167,7 @@ The following labels are important for the service discovery/exposure via marath
   "maxLaunchDelaySeconds": 3600,
   "container": {
     "docker": {
-      "image": "gitlab/gitlab-ce:8.11.5-ce.0",
+      "image": "gitlab/gitlab-ce:8.16.4-ce.0",
       "forcePullImage": false,
       "privileged": false,
       "portMappings": [
