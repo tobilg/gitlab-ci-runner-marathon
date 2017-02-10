@@ -121,4 +121,4 @@ trap _getTerminationSignal TERM
 gitlab-runner register
 
 # Start the runner
-exec gitlab-runner run --working-directory=${RUNNER_WORK_DIR}
+gitlab-runner run --working-directory=${RUNNER_WORK_DIR}
