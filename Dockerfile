@@ -43,6 +43,6 @@ RUN apt-get update -y && \
 ADD register_and_run.sh /
 
 # Expose volumes
-VOLUME ["/etc/gitlab-runner", "/home/gitlab-runner"]
+VOLUME ["/var/lib/docker", "/etc/gitlab-runner", "/home/gitlab-runner"]
 
 ENTRYPOINT ["/usr/bin/dumb-init", "/register_and_run.sh"]
