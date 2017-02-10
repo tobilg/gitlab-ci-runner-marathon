@@ -107,6 +107,16 @@ while(! docker info > /dev/null 2>&1); do
 done
 echo "==> Docker Daemon is up and running!"
 
+# Termination function
+_getTerminationSignal() {
+    echo "Caught SIGTERM signal! Deleting GitLab Runner!"
+    # See https://docs.gitlab.com/ce/api/ci/runners.html#delete-a-runner
+    curl --request DELETE "${CI_SERVER_URL}/api/v1/runners/delete" --form "token=${REGISTRATION_TOKEN}"
+}
+
+# Trap SIGTERM
+trap _getTerminationSignal SIGTERM
+
 # Register the runner
 gitlab-runner register
 
