@@ -115,7 +115,7 @@ _getTerminationSignal() {
 }
 
 # Trap SIGTERM
-trap _getTerminationSignal SIGTERM
+trap _getTerminationSignal TERM
 
 # Register the runner
 gitlab-runner register
