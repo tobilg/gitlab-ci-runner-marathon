@@ -110,8 +110,10 @@ echo "==> Docker Daemon is up and running!"
 # Termination function
 _getTerminationSignal() {
     echo "Caught SIGTERM signal! Deleting GitLab Runner!"
-    # See https://docs.gitlab.com/ce/api/ci/runners.html#delete-a-runner
-    curl --request DELETE "${CI_SERVER_URL}/api/v1/runners/delete" --form "token=${REGISTRATION_TOKEN}"
+    # Unregister (by name). See https://gitlab.com/gitlab-org/gitlab-ci-multi-runner/tree/master/docs/commands#by-name
+    gitlab-runner unregister --name ${MESOS_TASK_ID}
+    # Exit with error code 0
+    exit 0
 }
 
 # Trap SIGTERM
