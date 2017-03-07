@@ -1,5 +1,10 @@
 # dcos-gitlab-runner-service
 
+[![Build Status](https://jenkins.mesosphere.com/service/jenkins/buildStatus/icon?job=GitLab/dcos-gitlab-runner-service-publish-docker_release)](https://jenkins.mesosphere.com/service/jenkins/job/GitLab/dcos-gitlab-runner-service-publish-docker_release)
+[![Docker Stars](https://img.shields.io/docker/stars/mesosphere/dcos-gitlab-runner-service.svg)][docker-hub]
+[![Docker Pulls](https://img.shields.io/docker/pulls/mesosphere/dcos-gitlab-runner-service.svg)][docker-hub]
+[![](https://images.microbadger.com/badges/image/mesosphere/dcos-gitlab-runner-service.svg)](http://microbadger.com/images/mesosphere/dcos-gitlab-runner-service "Get your own image badge on microbadger.com")
+
 A customized Docker image for running scalable GitLab CI runners on DC/OS via Marathon.
 
 ## Configuration
