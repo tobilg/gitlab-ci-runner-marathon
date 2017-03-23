@@ -13,7 +13,8 @@ The GitLab runner can be configured by environment variables. For a complete ove
 
 The most important ones are:
 
-* `GITLAB_SERVICE_NAME`: The Mesos DNS service name, e.g. `gitlab.marathon.mesos`. This strongly depends on your setup, i.e. how you launched GitLab and how you configured Mesos DNS. **(mandatory)**
+* `GITLAB_SERVICE_NAME`: The Mesos DNS service name of the GitLab instance, e.g. `gitlab.marathon.mesos`. This strongly depends on your setup, i.e. how you launched GitLab and how you configured Mesos DNS. This is the recommended method to use with DC/OS installations of GitLab. Either this environment variable or `GITLAB_INSTANCE_URL` is **mandatory**.
+* `GITLAB_INSTANCE_URL`: The URL of the GitLab instance to connect to, e.g. `http://gitlab.mycompany.com`. Either this environment variable or `GITLAB_SERVICE_NAME` is **mandatory**.
 * `REGISTRATION_TOKEN`: The registration token to use with the GitLab instance. See the [docs](https://docs.gitlab.com/ce/ci/runners/README.html) for details. **(mandatory)**
 * `RUNNER_EXECUTOR`: The type of the executor to use, e.g. `shell` or `docker`. See the [executor docs](https://github.com/ayufan/gitlab-ci-multi-runner/blob/master/docs/executors/README.md) for more details. **(mandatory)**
 * `RUNNER_CONCURRENT_BUILDS`: The number of concurrent builds this runner should be able to handel. Default is `1`.
@@ -23,7 +24,7 @@ The most important ones are:
 
 This version of the GitLab CI runner for Marathon project uses Docker-in-Docker techniques, with all of its pros and cons. See also [jpetazzo's article](http://jpetazzo.github.io/2015/09/03/do-not-use-docker-in-docker-for-ci/) on this topic.
 
-In the following examples, we assume that you're running the GitLab Universe package as service `gitlab` on DC/OS internal Marathon instance, which is also available to the runners via the `external_url` of the GitLab configuration. This normally means that GitLab is exposed on a public agent node via marathon-lb. Please see the [example documentation here|https://github.com/dcos/examples/tree/master/1.8/gitlab].
+In the following examples, we assume that you're running the GitLab Universe package as service `gitlab` on the DC/OS internal Marathon instance, which is also available to the runners via the `external_url` of the GitLab configuration. This normally means that GitLab is exposed on a public agent node via marathon-lb. Please see the [example documentation here|https://github.com/dcos/examples/tree/master/1.8/gitlab].
 
 ### Shell runner
 
@@ -35,7 +36,7 @@ An example for a shell runner. This enables the build of Docker images.
   "container": {
     "type": "DOCKER",
     "docker": {
-      "image": "mesosphere/dcos-gitlab-runner-service:v1.10",
+      "image": "mesosphere/dcos-gitlab-runner-service:v9.0.0",
       "network": "HOST",
       "forcePullImage": true,
       "privileged": true
@@ -64,7 +65,7 @@ Here's an example for a Docker runner, which enables builds *inside* Docker cont
   "container": {
     "type": "DOCKER",
     "docker": {
-      "image": "mesosphere/dcos-gitlab-runner-service:v1.10",
+      "image": "mesosphere/dcos-gitlab-runner-service:v9.0.0",
       "network": "HOST",
       "forcePullImage": true,
       "privileged": true
