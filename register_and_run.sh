@@ -137,4 +137,4 @@ trap _getTerminationSignal TERM
 gitlab-runner register
 
 # Start the runner
-gitlab-runner run --working-directory=${RUNNER_WORK_DIR}
+gitlab-runner run --working-directory=${RUNNER_WORK_DIR} --metrics-server $HOST:$PORT0
