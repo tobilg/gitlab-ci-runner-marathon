@@ -20,6 +20,10 @@ The most important ones are:
 * `RUNNER_CONCURRENT_BUILDS`: The number of concurrent builds this runner should be able to handel. Default is `1`.
 * `RUNNER_TAG_LIST`: If you want to use tags in you `.gitlab-ci.yml`, then you need to specify the comma-separated list of tags. This is useful to distinguish the runner types.
 
+## Using private Docker registries with GitLab Runner
+
+Private Docker registries can be used by adding the [secret variable](https://docs.gitlab.com/ce/ci/variables/#secret-variables) `DOCKER_AUTH_CONFIG` to your project's **Settings ➔ CI/CD Pipelines** settings. Have a look at the [guide](https://docs.gitlab.com/runner/configuration/advanced-configuration.html#using-a-private-container-registry) as well.
+
 ## Run on DC/OS
 
 This version of the GitLab CI runner for Marathon project uses Docker-in-Docker techniques, with all of its pros and cons. See also [jpetazzo's article](http://jpetazzo.github.io/2015/09/03/do-not-use-docker-in-docker-for-ci/) on this topic.
@@ -51,7 +55,19 @@ An example for a shell runner. This enables the build of Docker images.
     "RUNNER_EXECUTOR": "shell",
     "RUNNER_TAG_LIST": "shell,build-as-docker",
     "RUNNER_CONCURRENT_BUILDS": "4"
-  }
+  },
+  "healthChecks": [
+     {
+       "path": "/metrics",
+       "portIndex": 0,
+       "protocol": "HTTP",
+       "gracePeriodSeconds": 300,
+       "intervalSeconds": 60,
+       "timeoutSeconds": 20,
+       "maxConsecutiveFailures": 3,
+       "ignoreHttp1xx": false
+     }
+  ]
 }
 ``` 
 
@@ -81,7 +97,19 @@ Here's an example for a Docker runner, which enables builds *inside* Docker cont
     "RUNNER_TAG_LIST": "docker,build-in-docker",
     "RUNNER_CONCURRENT_BUILDS": "4",
     "DOCKER_IMAGE": "node:6-wheezy"
-  }
+  },
+  "healthChecks": [
+     {
+        "path": "/metrics",
+        "portIndex": 0,
+        "protocol": "HTTP",
+        "gracePeriodSeconds": 300,
+        "intervalSeconds": 60,
+        "timeoutSeconds": 20,
+        "maxConsecutiveFailures": 3,
+        "ignoreHttp1xx": false
+      }
+  ]
 }
 ```
 
