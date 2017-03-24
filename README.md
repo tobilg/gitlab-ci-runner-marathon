@@ -50,7 +50,19 @@ An example for a shell runner. This enables the build of Docker images.
     "RUNNER_EXECUTOR": "shell",
     "RUNNER_TAG_LIST": "shell,build-as-docker",
     "RUNNER_CONCURRENT_BUILDS": "4"
-  }
+  },
+  "healthChecks": [
+     {
+       "path": "/metrics",
+       "portIndex": 0,
+       "protocol": "HTTP",
+       "gracePeriodSeconds": 300,
+       "intervalSeconds": 60,
+       "timeoutSeconds": 20,
+       "maxConsecutiveFailures": 3,
+       "ignoreHttp1xx": false
+     }
+  ]
 }
 ``` 
 
@@ -80,7 +92,19 @@ Here's an example for a Docker runner, which enables builds *inside* Docker cont
     "RUNNER_TAG_LIST": "docker,build-in-docker",
     "RUNNER_CONCURRENT_BUILDS": "4",
     "DOCKER_IMAGE": "node:6-wheezy"
-  }
+  },
+  "healthChecks": [
+    {
+      "path": "/metrics",
+      "portIndex": 0,
+      "protocol": "HTTP",
+      "gracePeriodSeconds": 300,
+      "intervalSeconds": 60,
+      "timeoutSeconds": 20,
+      "maxConsecutiveFailures": 3,
+      "ignoreHttp1xx": false
+    }
+  ]
 }
 ```
 
