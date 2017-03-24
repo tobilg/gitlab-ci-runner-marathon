@@ -62,7 +62,11 @@ An example for a shell runner. This enables the build of Docker images.
        "maxConsecutiveFailures": 3,
        "ignoreHttp1xx": false
      }
-  ]
+  ],
+  "portDefinitions": [
+    {"port": 0}
+  ],
+  "requirePorts": false
 }
 ``` 
 
@@ -104,7 +108,11 @@ Here's an example for a Docker runner, which enables builds *inside* Docker cont
       "maxConsecutiveFailures": 3,
       "ignoreHttp1xx": false
     }
-  ]
+  ],
+  "portDefinitions": [
+    {"port": 0}
+  ],
+  "requirePorts": false
 }
 ```
 
