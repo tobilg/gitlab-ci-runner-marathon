@@ -7,9 +7,9 @@ ADD https://github.com/Yelp/dumb-init/releases/download/v1.0.2/dumb-init_1.0.2_a
 
 ENV DIND_COMMIT 3b5fac462d21ca164b3778647420016315289034
 
-ENV GITLAB_RUNNER_VERSION=1.11.1
+ENV GITLAB_RUNNER_VERSION=9.0.2
 
-ENV DOCKER_ENGINE_VERSION=1.11.2-0~xenial
+ENV DOCKER_ENGINE_VERSION=1.13.1-0~ubuntu-xenial
 
 # Install components and do the preparations
 # 1. Install needed packages
