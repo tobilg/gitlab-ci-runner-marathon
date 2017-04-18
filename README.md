@@ -40,7 +40,7 @@ An example for a shell runner. This enables the build of Docker images.
   "container": {
     "type": "DOCKER",
     "docker": {
-      "image": "mesosphere/dcos-gitlab-runner-service:v9.0.0",
+      "image": "mesosphere/dcos-gitlab-runner-service:v9.0.2",
       "network": "HOST",
       "forcePullImage": true,
       "privileged": true
@@ -56,6 +56,7 @@ An example for a shell runner. This enables the build of Docker images.
     "RUNNER_TAG_LIST": "shell,build-as-docker",
     "RUNNER_CONCURRENT_BUILDS": "4"
   },
+  "taskKillGracePeriodSeconds": 15,
   "healthChecks": [
      {
        "path": "/metrics",
@@ -81,7 +82,7 @@ Here's an example for a Docker runner, which enables builds *inside* Docker cont
   "container": {
     "type": "DOCKER",
     "docker": {
-      "image": "mesosphere/dcos-gitlab-runner-service:v9.0.0",
+      "image": "mesosphere/dcos-gitlab-runner-service:v9.0.2",
       "network": "HOST",
       "forcePullImage": true,
       "privileged": true
@@ -98,6 +99,7 @@ Here's an example for a Docker runner, which enables builds *inside* Docker cont
     "RUNNER_CONCURRENT_BUILDS": "4",
     "DOCKER_IMAGE": "node:6-wheezy"
   },
+  "taskKillGracePeriodSeconds": 15,
   "healthChecks": [
      {
         "path": "/metrics",
