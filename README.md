@@ -24,6 +24,7 @@ The most important ones are:
 
 Private Docker registries can be used by adding the [secret variable](https://docs.gitlab.com/ce/ci/variables/#secret-variables) `DOCKER_AUTH_CONFIG` to your project's **Settings ➔ CI/CD Pipelines** settings. Have a look at the [guide](https://docs.gitlab.com/runner/configuration/advanced-configuration.html#using-a-private-container-registry) as well.
 
+
 ## Run on DC/OS
 
 This version of the GitLab CI runner for Marathon project uses Docker-in-Docker techniques, with all of its pros and cons. See also [jpetazzo's article](http://jpetazzo.github.io/2015/09/03/do-not-use-docker-in-docker-for-ci/) on this topic.
