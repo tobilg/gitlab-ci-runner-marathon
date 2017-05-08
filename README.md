@@ -40,7 +40,7 @@ An example for a shell runner. This enables the build of Docker images.
   "container": {
     "type": "DOCKER",
     "docker": {
-      "image": "mesosphere/dcos-gitlab-runner-service:v9.0.2",
+      "image": "mesosphere/dcos-gitlab-runner-service:v9.1.1",
       "network": "HOST",
       "forcePullImage": true,
       "privileged": true
@@ -82,7 +82,7 @@ Here's an example for a Docker runner, which enables builds *inside* Docker cont
   "container": {
     "type": "DOCKER",
     "docker": {
-      "image": "mesosphere/dcos-gitlab-runner-service:v9.0.2",
+      "image": "mesosphere/dcos-gitlab-runner-service:v9.1.1",
       "network": "HOST",
       "forcePullImage": true,
       "privileged": true
