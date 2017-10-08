@@ -1,8 +1,9 @@
 # gitlab-ci-runner-marathon
 
+[![Build Status](https://travis-ci.org/tobilg/gitlab-ci-runner-marathon.svg?branch=master)](https://travis-ci.org/tobilg/gitlab-ci-runner-marathon)
 [![Docker Stars](https://img.shields.io/docker/stars/tobilg/gitlab-ci-runner-marathon.svg)](https://hub.docker.com/r/tobilg/gitlab-ci-runner-marathon/)
 [![Docker Pulls](https://img.shields.io/docker/pulls/tobilg/gitlab-ci-runner-marathon.svg)](https://hub.docker.com/r/tobilg/gitlab-ci-runner-marathon/)
-[![](https://images.microbadger.com/badges/image/tobilg/gitlab-ci-runner-marathon.svg)](http://microbadger.com/images/tobilg/gitlab-ci-runner-marathon "Get your own image badge on microbadger.com")
+[![](https://images.microbadger.com/badges/image/tobilg/gitlab-ci-runner-marathon.svg)](http://microbadger.com/images/tobilg/gitlab-ci-runner-marathon "Get your own image badge on microbadger.com") 
 
 A customized Docker image for running scalable GitLab CI runners on DC/OS via Marathon.
 
