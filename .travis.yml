@@ -5,3 +5,6 @@ services:
 
 before_install:
   - docker build -t tobilg/gitlab-ci-runner-marathon .
+
+script:
+  - echo "Done!"
