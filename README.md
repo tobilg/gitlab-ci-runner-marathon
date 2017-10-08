@@ -1,9 +1,8 @@
-# dcos-gitlab-runner-service
+# gitlab-ci-runner-marathon
 
-[![Build Status](https://jenkins.mesosphere.com/service/jenkins/buildStatus/icon?job=GitLab/dcos-gitlab-runner-service-publish-docker_release)](https://jenkins.mesosphere.com/service/jenkins/job/GitLab/job/dcos-gitlab-runner-service-publish-docker_release/)
-[![Docker Stars](https://img.shields.io/docker/stars/mesosphere/dcos-gitlab-runner-service.svg)](https://hub.docker.com/r/mesosphere/dcos-gitlab-runner-service/)
-[![Docker Pulls](https://img.shields.io/docker/pulls/mesosphere/dcos-gitlab-runner-service.svg)](https://hub.docker.com/r/mesosphere/dcos-gitlab-runner-service/)
-[![](https://images.microbadger.com/badges/image/mesosphere/dcos-gitlab-runner-service.svg)](http://microbadger.com/images/mesosphere/dcos-gitlab-runner-service "Get your own image badge on microbadger.com")
+[![Docker Stars](https://img.shields.io/docker/stars/tobilg/gitlab-ci-runner-marathon.svg)](https://hub.docker.com/r/tobilg/gitlab-ci-runner-marathon/)
+[![Docker Pulls](https://img.shields.io/docker/pulls/tobilg/gitlab-ci-runner-marathon.svg)](https://hub.docker.com/r/tobilg/gitlab-ci-runner-marathon/)
+[![](https://images.microbadger.com/badges/image/tobilg/gitlab-ci-runner-marathon.svg)](http://microbadger.com/images/tobilg/gitlab-ci-runner-marathon "Get your own image badge on microbadger.com")
 
 A customized Docker image for running scalable GitLab CI runners on DC/OS via Marathon.
 
@@ -40,7 +39,7 @@ An example for a shell runner. This enables the build of Docker images.
   "container": {
     "type": "DOCKER",
     "docker": {
-      "image": "mesosphere/dcos-gitlab-runner-service:v9.1.1",
+      "image": "tobilg/gitlab-ci-runner-marathon:v9.1.1",
       "network": "HOST",
       "forcePullImage": true,
       "privileged": true
@@ -82,7 +81,7 @@ Here's an example for a Docker runner, which enables builds *inside* Docker cont
   "container": {
     "type": "DOCKER",
     "docker": {
-      "image": "mesosphere/dcos-gitlab-runner-service:v9.1.1",
+      "image": "tobilg/gitlab-ci-runner-marathon:v9.1.1",
       "network": "HOST",
       "forcePullImage": true,
       "privileged": true
