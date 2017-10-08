@@ -7,7 +7,7 @@ ADD https://github.com/Yelp/dumb-init/releases/download/v1.0.2/dumb-init_1.0.2_a
 
 ENV DIND_COMMIT 3b5fac462d21ca164b3778647420016315289034
 
-ENV GITLAB_RUNNER_VERSION=9.1.1
+ENV GITLAB_RUNNER_VERSION=10.0.2
 
 ENV DOCKER_ENGINE_VERSION=1.13.1-0~ubuntu-xenial
 
@@ -22,10 +22,9 @@ RUN apt-get update -y && \
     apt-get upgrade -y && \
     apt-get install -y ca-certificates apt-transport-https curl dnsutils bridge-utils lsb-release software-properties-common && \
     chmod +x /usr/bin/dumb-init && \
-    echo "deb https://packages.gitlab.com/runner/gitlab-ci-multi-runner/ubuntu/ `lsb_release -cs` main" > /etc/apt/sources.list.d/runner_gitlab-ci-multi-runner.list && \
-    curl -sSL https://packages.gitlab.com/gpg.key | apt-key add - && \
+    curl -L https://packages.gitlab.com/install/repositories/runner/gitlab-runner/script.deb.sh | bash && \
     apt-get update -y && \
-    apt-get install -y gitlab-ci-multi-runner=${GITLAB_RUNNER_VERSION} && \
+    apt-get install -y gitlab-runner=${GITLAB_RUNNER_VERSION} && \
     mkdir -p /etc/gitlab-runner/certs && \
     chmod -R 700 /etc/gitlab-runner && \
     curl -sSL https://raw.githubusercontent.com/tobilg/mesosdns-resolver/master/mesosdns-resolver.sh -o /usr/local/bin/mesosdns-resolver && \
