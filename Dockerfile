@@ -3,13 +3,13 @@ FROM ubuntu:16.04
 MAINTAINER TobiLG <tobilg@gmail.com>
 
 # Download dumb-init
-ADD https://github.com/Yelp/dumb-init/releases/download/v1.0.2/dumb-init_1.0.2_amd64 /usr/bin/dumb-init
+ADD https://github.com/Yelp/dumb-init/releases/download/v1.2.2/dumb-init_1.2.2_amd64 /usr/bin/dumb-init
 
 ENV DIND_COMMIT 3b5fac462d21ca164b3778647420016315289034
 
-ENV GITLAB_RUNNER_VERSION=10.0.2
+ENV GITLAB_RUNNER_VERSION="12.10.3"
 
-ENV DOCKER_ENGINE_VERSION=1.13.1-0~ubuntu-xenial
+ENV DOCKER_CE_VERSION="5:19.03.13~3-0~ubuntu-xenial"
 
 # Install components and do the preparations
 # 1. Install needed packages
@@ -29,10 +29,10 @@ RUN apt-get update -y && \
     chmod -R 700 /etc/gitlab-runner && \
     curl -sSL https://raw.githubusercontent.com/tobilg/mesosdns-resolver/master/mesosdns-resolver.sh -o /usr/local/bin/mesosdns-resolver && \
     chmod +x /usr/local/bin/mesosdns-resolver && \
-    apt-key adv --keyserver hkp://p80.pool.sks-keyservers.net:80 --recv-keys 58118E89F3A912897C070ADBF76221572C52609D && \
-    apt-add-repository 'deb https://apt.dockerproject.org/repo ubuntu-xenial main' && \
+    curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add - && \
+    add-apt-repository "deb [arch=amd64] https://download.docker.com/linux/ubuntu $(lsb_release -cs) stable" && \
     apt-get update && \
-    apt-get install -y docker-engine=${DOCKER_ENGINE_VERSION} && \
+    apt-get install -y docker-ce=${DOCKER_CE_VERSION} docker-ce-cli=${DOCKER_CE_VERSION} containerd.io && \
     curl -sSL https://raw.githubusercontent.com/docker/docker/${DIND_COMMIT}/hack/dind -o /usr/local/bin/dind && \
     chmod a+x /usr/local/bin/dind && \
     apt-get clean && \
