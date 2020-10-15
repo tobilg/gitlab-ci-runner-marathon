@@ -40,7 +40,7 @@ An example for a shell runner. This enables the build of Docker images.
   "container": {
     "type": "DOCKER",
     "docker": {
-      "image": "tobilg/gitlab-ci-runner-marathon:v12.10.3",
+      "image": "tobilg/gitlab-ci-runner-marathon:v13.4.1",
       "network": "HOST",
       "forcePullImage": true,
       "privileged": true
@@ -82,7 +82,7 @@ Here's an example for a Docker runner, which enables builds *inside* Docker cont
   "container": {
     "type": "DOCKER",
     "docker": {
-      "image": "tobilg/gitlab-ci-runner-marathon:v12.10.3",
+      "image": "tobilg/gitlab-ci-runner-marathon:v13.4.1",
       "network": "HOST",
       "forcePullImage": true,
       "privileged": true

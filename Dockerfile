@@ -7,7 +7,7 @@ ADD https://github.com/Yelp/dumb-init/releases/download/v1.2.2/dumb-init_1.2.2_a
 
 ENV DIND_COMMIT 3b5fac462d21ca164b3778647420016315289034
 
-ENV GITLAB_RUNNER_VERSION="12.10.3"
+ENV GITLAB_RUNNER_VERSION="13.4.1"
 
 ENV DOCKER_CE_VERSION="5:19.03.13~3-0~ubuntu-xenial"
 
